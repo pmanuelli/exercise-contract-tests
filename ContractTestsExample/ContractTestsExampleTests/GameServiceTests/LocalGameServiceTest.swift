@@ -3,9 +3,16 @@
 
 import XCTest
 
-class LocalGameServiceTest: GameServiceTest {
+//class LocalGameServiceTest: GameServiceTest {
+//
+//    override func createGameService() -> GameService {
+//        return LocalGameService()
+//    }
+//}
 
-    override func createGameService() -> GameService {
-        return LocalGameService()
-    }
+class LocalGameServiceTest: XCTestCase {
+    
+   
+    
+    
 }

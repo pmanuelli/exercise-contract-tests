@@ -5,7 +5,10 @@ import XCTest
 
 class GamePresenterTest: XCTestCase {
     
-    func testExpectationCreateNewGame() {
+    // Este es un test de expectations
+    // Sobre las interacciones de GamePresenter (client) con DateProvider y GameService (servers)
+    
+    func testCreateNewGameExpectations() {
         
         // Given
         let view = DummyGameView()
@@ -25,7 +28,11 @@ class GamePresenterTest: XCTestCase {
         XCTAssertEqual(gameService.createNewGameDate, date)
     }
     
-    func testAnswerCallsShowGame() {
+    // Este es un test de answer y pero tambien de expectations
+    // El escenario es el mismo que el anterior, pero aca hago foco sobre el caso en que la respuesta del GameService es un game no nulo.
+    // Luego de eso se testean interacciones de GamePresenter (client) con GameView (server)
+    
+    func testCallsShowGame() {
         
         // Given
         let view = SpyGameView()
@@ -46,7 +53,11 @@ class GamePresenterTest: XCTestCase {
         XCTAssertEqual(view.showGameGame, game)
     }
     
-    func testAnswerCallsShowError() {
+    // Este es otro test de answer y expectations
+    // El escenario es el mismo que el anterior, pero para el caso de respuesta nula.
+    // Luego de eso se testean interacciones de GamePresenter (client) con GameView (server)
+    
+    func testCallsShowError() {
         
         // Given
         let view = SpyGameView()
@@ -111,16 +122,16 @@ class SpyDateProvider: DateProvider {
     }
 }
 
-class SpyGameService: GameService {
+class StubGameService: GameService {
     
-    var createNewGameTimesCalled = 0
-    var createNewGameDate: Date?
+    private let createNewGameResult: Game?
+    
+    init(createNewGameResult: Game?) {
+        self.createNewGameResult = createNewGameResult
+    }
     
     func createNewGame(date: Date) -> Game? {
-        createNewGameTimesCalled += 1
-        createNewGameDate = date
-        
-        return nil
+        return createNewGameResult
     }
     
     func getAllGames() -> Array<Game> {
@@ -132,16 +143,16 @@ class SpyGameService: GameService {
     }
 }
 
-class StubGameService: GameService {
+class SpyGameService: GameService {
     
-    private let createNewGameGame: Game?
-    
-    init(createNewGameResult: Game?) {
-        self.createNewGameGame = createNewGameGame
-    }
+    var createNewGameTimesCalled = 0
+    var createNewGameDate: Date?
     
     func createNewGame(date: Date) -> Game? {
-        return createNewGameResult
+        createNewGameTimesCalled += 1
+        createNewGameDate = date
+        
+        return nil
     }
     
     func getAllGames() -> Array<Game> {
