@@ -66,3 +66,5 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
+ContractTestsExample/ContractTestsExample.xcodeproj/project.xcworkspace/contents.xcworkspacedata
+ContractTestsExample/ContractTestsExample.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
