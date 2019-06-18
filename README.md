@@ -1,2 +1,3 @@
-# exercise-contract-tests
-Repository to exercise contract tests
+# Exercise: Contract Tests
+
+Repository to practice contract tests
